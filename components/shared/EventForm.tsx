@@ -41,10 +41,12 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
 	const initialValues = event && type === 'Update' 
 	  ? { 
 		...event, 
+		categoryId: event.category._id,
 		startDateTime: new Date(event.startDateTime), 
 		endDateTime: new Date(event.endDateTime) 
-	  }
-	  : eventDefaultValues;
+	  } : eventDefaultValues;
+
+	//   console.log(initialValues)
 
 	const router = useRouter();
 
@@ -267,7 +269,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
 						)}
 					/>
 				</div>
-				<Button type="submit" size="lg" disabled={form.formState.isSubmitting} className="button col-span-2 w-full">
+				<Button type="submit" size="lg" disabled={form.formState.isSubmitting} className="button rounded-md col-span-2 w-full">
 					{form.formState.isSubmitting ? ('Submitting...'): `${type} Event `}
 				</Button>
 			</form>
